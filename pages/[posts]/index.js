@@ -16,7 +16,7 @@ export default function Blog({ url, title, location, resolvedUrl }) {
 }
 
 export async function getServerSideProps({ resolvedUrl }) {
-	if (resolvedUrl === "/blog") {
+	if (resolvedUrl.includes("/blog")) {
 		return {
 			props: {
 				url: blogPostsURL,
@@ -25,7 +25,7 @@ export async function getServerSideProps({ resolvedUrl }) {
 				resolvedUrl: resolvedUrl,
 			},
 		};
-	} else if (resolvedUrl === "/code") {
+	} else if (resolvedUrl.includes("/code")) {
 		return {
 			props: {
 				url: codePostsURL,
