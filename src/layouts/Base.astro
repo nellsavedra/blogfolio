@@ -1,0 +1,19 @@
+---
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import Head from "../components/Head.astro";
+
+// Props
+const { title, description} = Astro.props;
+---
+
+<html lang="en">
+    <Head title={title} description={description} />
+    <body>
+        <Header />
+        <main>
+            <slot />
+        </main>
+        <Footer />
+    </body>
+</html>
