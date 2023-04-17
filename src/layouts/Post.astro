@@ -1,0 +1,14 @@
+---
+import FormattedDate from "../components/FormattedDate.astro";
+import Base from "./Base.astro";
+
+// Props
+const { title, description, date, image } = Astro.props;
+---
+
+<Base title={title} description={description} image={image} >
+    <p class="post-date contained"><FormattedDate date={date} /></p>
+    <div class="page-content post-body">
+        <slot />
+    </div>
+</Base>

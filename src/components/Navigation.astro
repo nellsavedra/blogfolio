@@ -1,0 +1,25 @@
+---
+import NavigationLink from "./NavigationLink.astro";
+
+const { pathname } = Astro.url;
+let emoji = "";
+if (pathname.includes("code")) emoji = "👨🏽‍💻";
+else if (pathname.includes("blog")) emoji = "📝";
+else if (pathname.includes("about")) emoji = "✨";
+else emoji = "🙋🏽‍♂️";
+---
+
+<header class="topbar">
+    <div class="logo">
+        <h1 class="logo__heading">
+            <a href="/" class="logo__link">
+                <b>Hola, soy <span class="underlined logo__name">Andrés</span></b>{emoji}
+            </a>
+        </h1>
+    </div>
+    <nav>
+        <NavigationLink href="/code">Code</NavigationLink>
+        <NavigationLink href="/blog">Blog</NavigationLink>
+        <NavigationLink href="/about">About</NavigationLink>
+    </nav>
+</header>

@@ -2,17 +2,17 @@
 import { getCollection } from "astro:content";
 import Feed from "../../layouts/Feed.astro";
 
-const posts = (await getCollection("blog")).sort(
+const posts = (await getCollection("code")).sort(
     (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
 );
 ---
 
-<Feed title={"Blog"}>
+<Feed title={"Code"}>
     {
         posts.map((post) => (
             <article>
                 <h3>
-                    <a href={`/blog/${post.slug}`}>{post.data.title}</a>
+                    <a href={`/code/${post.slug}`}>{post.data.title}</a>
                 </h3>
             </article>
         ))

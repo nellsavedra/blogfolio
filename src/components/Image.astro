@@ -1,0 +1,8 @@
+---
+const { src, caption } = Astro.props;
+---
+
+<div class="post-body-image">
+    <img alt={caption} src={src} loading="lazy" decoding="async" />
+</div>
+<figcaption>{caption}</figcaption>

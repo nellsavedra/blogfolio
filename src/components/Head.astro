@@ -1,22 +1,24 @@
 ---
-import "../styles/global.css";
+import "../styles/global.scss";
+import { Site } from "../consts";
 
 export interface Props {
     title: string;
     description: string;
-    image?: string;
+    image: string;
 }
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const { description, image } = Astro.props;
+let { title } = Astro.props;
+if(!Astro.params.slug) title = `${title} — ${Site.title}`;
+if(Astro.url.pathname === "/") title = `${Site.title} — ${Site.position}`;
 
-const { title, description, image = "/placeholder-social.jpg" } = Astro.props;
 ---
 
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="generator" content={Astro.generator} />
     <link rel="canonical" href={canonicalURL} />
     <title>{title}</title>
     <meta name="title" content={title} />
@@ -25,15 +27,18 @@ const { title, description, image = "/placeholder-social.jpg" } = Astro.props;
     <meta property="og:url" content={Astro.url} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={new URL(image, Astro.url)} />
+    <meta property="og:image" content={image} />
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content={Astro.url} />
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
-    <meta property="twitter:image" content={new URL(image, Astro.url)} />
+    <meta property="twitter:image" content={image} />
     <link rel="stylesheet" href="https://use.typekit.net/qiy2gad.css" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-    <slot />
+    <link
+        href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"
+        rel="stylesheet"
+    />
 </head>
